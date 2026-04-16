@@ -1,0 +1,29 @@
+
+.addButton{
+    border-radius: 100px;
+}
+.cmpTaskForm{
+    display: grid;
+    width: 250px;
+    gap:20px;
+    background-color: blue;
+    padding: 20px;
+    margin: auto;
+}
+
+
+.TaskInput{
+    width: 200px;
+    margin: auto;
+}
+.cmpTasks{
+    width: 80%;
+    margin: auto;
+    display: grid;
+    align-items: start;
+    gap: 30px;
+}
+.task{
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+}
