@@ -22,7 +22,7 @@ function TodoList({ onBack }) {
     },
   ]);
 
-  // Функция добавления новой задачи
+
   const addTask = (newTask) => {
     setTasks((prevTasks) => [
       ...prevTasks,

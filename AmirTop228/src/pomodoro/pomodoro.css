@@ -1,0 +1,11 @@
+.Pomodoro-setings{
+    background-color: rgb(184, 183, 185);
+    display: grid;
+
+    gap: 20px;
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+
+    color: black;
+}

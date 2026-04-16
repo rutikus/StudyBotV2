@@ -1,4 +1,5 @@
 import './pomodoro.css';
+import PomodoroSetings from './pomodoroSetingsForm';
 
 function PomodoroMenu({ onBack }) {
   return (
@@ -7,7 +8,7 @@ function PomodoroMenu({ onBack }) {
       <button className="button Backbutton" onClick={() => onBack()}>
         Назад
       </button>
-      <a>its pomodoro</a>
+      {PomodoroSetings()}
     </div>
   );
 }

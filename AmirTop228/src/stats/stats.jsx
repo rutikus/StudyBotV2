@@ -7,7 +7,7 @@ function StatsMenu({ onBack }) {
       <button className="button Backbutton" onClick={() => onBack()}>
         Назад
       </button>
-      <a>its stats</a>
+
     </div>
   );
 }

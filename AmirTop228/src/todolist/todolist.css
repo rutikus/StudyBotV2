@@ -1,4 +1,6 @@
-
+body{
+    color: black;
+}
 .addButton{
     border-radius: 100px;
 }

@@ -8,8 +8,10 @@ function TodoListTasks({ tasks, onToggle }) {
   return (
     <div className="cmpTasks">
       {tasks.map((task) => (
-        <div key={task.id} className="task">
-          <h3 style={{ textDecoration: task.isCompleted ? 'line-through' : 'none' }}>
+        <div key={task.id} className="task" style={{ backgroundColor: task.isCompleted ? 'green' : 'white'
+           }}>
+          <h3 style={{ textDecoration: task.isCompleted ? 'line-through' : 'none'
+           }}>
             {task.title}
           </h3>
           <p>{task.description}</p>
