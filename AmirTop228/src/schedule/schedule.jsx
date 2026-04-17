@@ -1,4 +1,5 @@
 import './schedule.css';
+import ScheduleWeek from './scheduleWeekMenu';
 
 function ScheduleMenu({ onBack }) {
   return (
@@ -7,6 +8,7 @@ function ScheduleMenu({ onBack }) {
       <button className="button Backbutton" onClick={() => onBack()}>
         Назад
       </button>
+      {ScheduleWeek()}
     </div>
   );
 }

@@ -1,0 +1,14 @@
+.day{
+    background-color: aquamarine;
+
+}
+.place{
+    width: 15%;
+}
+.time{
+    width: 20%;
+}
+.ScheduleForm-container{
+    display: flex;
+    gap: 20px
+}
