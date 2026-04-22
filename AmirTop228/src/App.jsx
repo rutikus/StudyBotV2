@@ -5,28 +5,12 @@ import ScheduleMenu from './schedule/schedule';
 import TodoList from './todolist/todolist';
 import PomodoroMenu from './pomodoro/pomodoro';
 import StatsMenu from './stats/stats';
-import { loginWithTelegram } from './auth'; // <-- Импорт функции авторизации
-import { supabase } from './until/supabase';
-
-const getUserIIds = async () => {
-  const { data, error } = await supabase
-    .from('Users') // название таблицы
-    .select('user_id')   // можно перечислить поля: 'id, title, completed'
-    .order('created_at', { ascending: false });
-
-  if (error) {
-    console.error('Ошибка загрузки:', error);
-  } else {
-    console.log('Данные:', data);
-    // обновить состояние компонента
-  }
-};
-
+import { loginWithTelegram } from './auth';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('menu');
-  const [userId, setUserId] = useState(null);
-  const [isAuthReady, setIsAuthReady] = useState(false); // <-- Состояние готовности авторизации
+  const [tgId, setTgId] = useState(null);          // числовой Telegram ID
+  const [isAuthReady, setIsAuthReady] = useState(false);
 
   useEffect(() => {
     const authenticate = async () => {
@@ -35,18 +19,24 @@ function App() {
         tg.ready();
         tg.expand();
 
-        // Выполняем авторизацию через Supabase
+        // Берём Telegram ID напрямую
+        const rawTgId = tg.initDataUnsafe?.user?.id;
+        if (rawTgId) {
+          setTgId(rawTgId);
+          console.log('✅ tg_id получен:', rawTgId);
+        }
+
+        // Выполняем серверную авторизацию (для JWT)
         const result = await loginWithTelegram();
-        if (result.success) {
-          setUserId(result.user_id);
-        } else {
+        if (!result.success) {
           console.warn('Авторизация не удалась:', result.error);
-          // Можно показать сообщение пользователю, если нужно
         }
       } else {
-        console.warn('⚠️ Запусти приложение внутри Telegram');
+        // Тестовый режим
+        setTgId(123456789);
+        console.warn('🔧 Режим разработки: тестовый tg_id = 123456789');
       }
-      setIsAuthReady(true); // Авторизация завершена (успешно или с ошибкой)
+      setIsAuthReady(true);
     };
 
     authenticate();
@@ -60,9 +50,9 @@ function App() {
       case 'menu':
         return <MenuButtons onNavigate={navigateTo} />;
       case 'schedule':
-        return <ScheduleMenu onBack={goBack} userId={userId} />;
+        return <ScheduleMenu onBack={goBack} tgId={tgId} />;
       case 'todolist':
-        return <TodoList onBack={goBack}  userId={userId}/>;
+        return <TodoList onBack={goBack} tgId={tgId} />;
       case 'pomodoro':
         return <PomodoroMenu onBack={goBack} />;
       case 'stats':
@@ -72,7 +62,6 @@ function App() {
     }
   };
 
-  // Показываем загрузку, пока авторизация не завершена
   if (!isAuthReady) {
     return (
       <div style={{ color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -81,11 +70,7 @@ function App() {
     );
   }
 
-  return (
-    <div>
-      {renderPage()}
-    </div>
-  );
+  return <div>{renderPage()}</div>;
 }
 
 export default App;
