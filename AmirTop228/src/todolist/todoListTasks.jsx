@@ -8,10 +8,8 @@ function TodoListTasks({ tasks, onToggle }) {
   return (
     <div className="cmpTasks">
       {tasks.map((task) => (
-        <div key={task.id} className="task" style={{ backgroundColor: task.isCompleted ? 'green' : 'white'
-           }}>
-          <h3 style={{ textDecoration: task.isCompleted ? 'line-through' : 'none'
-           }}>
+        <div key={task.id} className="task" style={{ backgroundColor: task.completed ? 'green' : 'white' }}>
+          <h3 style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
             {task.title}
           </h3>
           <p>{task.description}</p>
@@ -19,7 +17,7 @@ function TodoListTasks({ tasks, onToggle }) {
           <label>
             <input
               type="checkbox"
-              checked={task.isCompleted}
+              checked={task.completed}
               onChange={() => onToggle(task.id)}
             />
             Выполнено

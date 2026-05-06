@@ -56,7 +56,7 @@ function App() {
       case 'pomodoro':
         return <PomodoroMenu onBack={goBack} />;
       case 'stats':
-        return <StatsMenu onBack={goBack} />;
+        return <StatsMenu onBack={goBack} tgId={tgId} />;
       default:
         return <MenuButtons onNavigate={navigateTo} />;
     }
