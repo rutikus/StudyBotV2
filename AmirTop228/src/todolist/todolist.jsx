@@ -71,6 +71,20 @@ function TodoList({ onBack, tgId }) {
     if (!error) fetchTasks();
   };
 
+  // ✅ Функция удаления задачи
+  const deleteTask = async (taskId) => {
+    if (!confirm('Удалить задачу?')) return;
+    const { error } = await supabase
+      .from('todos')
+      .delete()
+      .eq('id', taskId);
+    if (error) {
+      alert('Ошибка при удалении: ' + error.message);
+    } else {
+      fetchTasks(); // обновить список
+    }
+  };
+
   return (
     <div className="todolist-container">
       <h1>TodoList</h1>
@@ -88,7 +102,15 @@ function TodoList({ onBack, tgId }) {
       )}
 
       {showForm && <TaskForm onAddTask={addTask} onCancel={() => setShowForm(false)} />}
-      {loading ? <p>Загрузка...</p> : <TodoListTasks tasks={tasks} onToggle={toggleTaskCompletion} />}
+      {loading ? (
+        <p>Загрузка...</p>
+      ) : (
+        <TodoListTasks
+          tasks={tasks}
+          onToggle={toggleTaskCompletion}
+          onDelete={deleteTask}   // ← теперь передаётся
+        />
+      )}
     </div>
   );
 }

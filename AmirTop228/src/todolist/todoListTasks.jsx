@@ -1,6 +1,6 @@
 import './todolist.css';
 
-function TodoListTasks({ tasks, onToggle }) {
+function TodoListTasks({ tasks, onToggle, onDelete }) {
   if (tasks.length === 0) {
     return <p>Нет задач</p>;
   }
@@ -22,6 +22,10 @@ function TodoListTasks({ tasks, onToggle }) {
             />
             Выполнено
           </label>
+          {/* 🗑️ Кнопка удаления */}
+          <button onClick={() => onDelete(task.id)} className="delete-task-btn">
+            🗑️
+          </button>
         </div>
       ))}
     </div>

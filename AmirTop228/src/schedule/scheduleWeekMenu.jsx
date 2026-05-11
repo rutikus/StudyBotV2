@@ -27,7 +27,7 @@ function ScheduleWeek({ tgId }) {
 
     setLoading(true);
     const { data, error } = await supabase
-      .from('Schedules')   // ← убраны кавычки
+      .from('Schedules')
       .select('*')
       .eq('tg_id', tgId)
       .order('start_time');
@@ -72,7 +72,7 @@ function ScheduleWeek({ tgId }) {
     console.log('📤 Отправляем payload:', payload);
 
     const { error } = await supabase
-      .from('Schedules')   // ← убраны кавычки
+      .from('Schedules')
       .insert(payload);
 
     if (error) {
@@ -82,6 +82,24 @@ function ScheduleWeek({ tgId }) {
       console.log('✅ Занятие успешно сохранено');
       await fetchSchedule();
       closeForm();
+    }
+  };
+
+  // ✨ Функция удаления занятия
+  const handleDelete = async (id) => {
+    if (!confirm('Удалить это занятие?')) return;
+
+    const { error } = await supabase
+      .from('Schedules')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error('❌ Ошибка удаления:', error);
+      alert('Не удалось удалить занятие');
+    } else {
+      console.log('🗑️ Занятие удалено');
+      fetchSchedule(); // обновляем список
     }
   };
 
@@ -105,9 +123,19 @@ function ScheduleWeek({ tgId }) {
             ) : (
               getItemsForDay(day.id).map(item => (
                 <div key={item.id} className="schedule-item">
-                  <span><strong>{item.title}</strong></span>
-                  <span>{item.start_time?.slice(0, 5)}</span>
-                  {item.description && <small>{item.description}</small>}
+                  <div className="schedule-item-info">
+                    <span><strong>{item.title}</strong></span>
+                    <span>{item.start_time?.slice(0, 5)}</span>
+                    {item.description && <small>{item.description}</small>}
+                  </div>
+                  {/* 🗑️ Кнопка удаления */}
+                  <button
+                    onClick={() => handleDelete(item.id)}
+                    className="delete-btn"
+                    title="Удалить занятие"
+                  >
+                    🗑️
+                  </button>
                 </div>
               ))
             )}
