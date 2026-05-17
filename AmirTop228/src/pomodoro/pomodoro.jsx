@@ -1,5 +1,4 @@
 import './pomodoro.css';
-import PomodoroSetings from './pomodoroSetingsForm';
 import PomodoroButtons from './pomodoroTimer';
 
 function PomodoroMenu({ onBack }) {

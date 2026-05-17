@@ -1,14 +1,310 @@
-.day{
-    background-color: aquamarine;
+/* ---------------------------------------
+   Schedule Styles – Modern Glassmorphism
+   --------------------------------------- */
 
+/* Контейнер всего расписания */
+.Schedule-container {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 16px;
+  min-height: 100vh;
 }
-.place{
-    width: 15%;
+
+/* Заголовок */
+.Schedule-container h1 {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f3f4f6, #2ec98e);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 16px;
+  text-align: center;
 }
-.time{
-    width: 20%;
+
+/* Кнопка "Назад" */
+.Schedule-container .Backbutton {
+  background: rgba(31, 41, 55, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(46, 201, 142, 0.3);
+  border-radius: 12px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #e8f5f0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 20px;
 }
-.ScheduleForm-container{
-    display: flex;
-    gap: 20px
+
+.Schedule-container .Backbutton:hover {
+  transform: translateY(-1px);
+  background: rgba(46, 201, 142, 0.2);
+  border-color: #2ec98e;
+}
+
+/* Основная сетка дней */
+.Schedule-week {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Карточка дня */
+.day {
+  background: rgba(18, 28, 40, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(46, 201, 142, 0.25);
+  border-radius: 20px;
+  padding: 14px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.day:hover {
+  transform: translateY(-2px);
+  border-color: #2ec98e;
+  background: rgba(18, 28, 40, 0.9);
+}
+
+.day h5 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2ec98e;
+  margin: 0 0 12px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(46, 201, 142, 0.3);
+  display: inline-block;
+}
+
+/* Кнопка добавления занятия (+) в каждом дне */
+.day > button {
+  float: right;
+  background: linear-gradient(135deg, #1a8f62, #2ec98e);
+  border: none;
+  border-radius: 30px;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.day > button:hover {
+  transform: scale(1.05) rotate(90deg);
+  background: #2ec98e;
+}
+
+/* Список занятий в дне */
+.schedule-items {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  clear: both;
+}
+
+/* Пустой день */
+.empty-day {
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+  padding: 8px;
+  font-style: italic;
+}
+
+/* Карточка одного занятия */
+.schedule-item {
+  background: rgba(31, 41, 55, 0.7);
+  backdrop-filter: blur(4px);
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+  border-left: 3px solid #2ec98e;
+}
+
+.schedule-item:hover {
+  background: rgba(46, 201, 142, 0.15);
+  transform: translateX(4px);
+}
+
+.schedule-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.schedule-item-info strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f3f4f6;
+}
+
+.schedule-item-info span:not(strong) {
+  font-size: 12px;
+  color: #2ec98e;
+  font-family: monospace;
+}
+
+.schedule-item-info small {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* Кнопка удаления занятия */
+.delete-btn {
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 30px;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f0c040;
+  flex-shrink: 0;
+}
+
+.delete-btn:hover {
+  background: rgba(232, 64, 64, 0.8);
+  transform: scale(1.05);
+  color: white;
+}
+
+/* Форма создания занятия */
+.ScheduleForm-container {
+  background: rgba(18, 28, 40, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(46, 201, 142, 0.4);
+  border-radius: 18px;
+  padding: 16px;
+  margin-top: 16px;
+  animation: fadeInUp 0.25s ease;
+}
+
+.ScheduleForm-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ScheduleForm-container input {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(46, 201, 142, 0.3);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #f3f4f6;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.ScheduleForm-container input:focus {
+  outline: none;
+  border-color: #2ec98e;
+  box-shadow: 0 0 0 3px rgba(46, 201, 142, 0.2);
+}
+
+.ScheduleForm-container input::placeholder {
+  color: #6b7280;
+}
+
+.ScheduleForm-container button[type="submit"] {
+  background: linear-gradient(135deg, #1a8f62, #2ec98e);
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ScheduleForm-container button[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(46, 201, 142, 0.3);
+}
+
+/* Оверлей формы (отмена) */
+.form-overlay {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cancel-btn {
+  background: rgba(31, 41, 55, 0.9);
+  border: 1px solid rgba(232, 64, 64, 0.3);
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #e84040;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancel-btn:hover {
+  background: rgba(232, 64, 64, 0.15);
+  border-color: #e84040;
+}
+
+/* Индикатор загрузки */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* Адаптивность для маленьких экранов */
+@media (max-width: 480px) {
+  .Schedule-container {
+    padding: 12px;
+  }
+  .Schedule-container h1 {
+    font-size: 24px;
+  }
+  .day {
+    padding: 12px;
+  }
+  .schedule-item {
+    padding: 10px;
+  }
+  .delete-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  .ScheduleForm-container {
+    padding: 12px;
+  }
+}
+
+/* Анимация появления */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.schedule-item {
+  animation: fadeInUp 0.2s ease-out;
 }

@@ -1,20 +1,107 @@
-.Pomodoro-setings{
-    background-color: rgb(184, 183, 185);
-    display: grid;
+/* ---------------------------------------
+   Pomodoro – общая тема, кнопки списком
+   --------------------------------------- */
 
-    gap: 20px;
-    width: 80%;
-    margin: auto;
-    padding: 20px;
+.Pomodoro-setings {
+  background: rgba(18, 28, 40, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(46, 201, 142, 0.25);
+  border-radius: 24px;
+  display: grid;
+  gap: 20px;
+  width: 80%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 24px 20px;
+  color: #f3f4f6;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
 
-    color: black;
+.TimeSet {
+  background: linear-gradient(135deg, #1a8f62, #2ec98e);
+  border-radius: 20px;
+  padding: 24px 20px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
-.TimeSet{
-    background-color: blueviolet;
-    color: black;
-    padding: 20px;
+
+.TimeSet h2 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  color: white;
 }
-.but{
-    display: grid;
-    gap: 20px;
+
+.TimeSet p {
+  font-size: 56px;
+  font-weight: 800;
+  font-family: 'Inter', monospace;
+  letter-spacing: 2px;
+  background: white;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin: 16px 0;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Кнопки – вертикальный список */
+.but {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.but button {
+  background: rgba(31, 41, 55, 0.9);
+  border: 1px solid rgba(46, 201, 142, 0.4);
+  border-radius: 40px;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #e8f5f0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  width: 100%;
+  text-align: center;
+}
+
+.but button:hover {
+  transform: translateY(-2px);
+  background: rgba(46, 201, 142, 0.2);
+  border-color: #2ec98e;
+}
+
+.but button:active {
+  transform: translateY(0);
+}
+
+/* Стиль для кнопки "Стоп" (если она первая – можно переопределить по желанию) */
+.but button:first-child {
+  background: rgba(232, 64, 64, 0.2);
+  border-color: rgba(232, 64, 64, 0.5);
+  color: #e84040;
+}
+
+.but button:first-child:hover {
+  background: rgba(232, 64, 64, 0.4);
+}
+
+/* Остальные кнопки (2, 3, 4) остаются стандартными */
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  .Pomodoro-setings {
+    width: 95%;
+    padding: 16px;
+    gap: 16px;
+  }
+  .TimeSet p {
+    font-size: 44px;
+  }
+  .but button {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
 }

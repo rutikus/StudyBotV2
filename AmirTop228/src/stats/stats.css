@@ -1,3 +1,256 @@
-.stats-block{
-    background-color: blueviolet;
+/* ---------------------------------------
+   Stats Styles – Modern Glassmorphism with Chart
+   --------------------------------------- */
+
+/* Основной контейнер статистики */
+.Stats-container {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 16px;
+  min-height: 100vh;
+}
+
+.Stats-container h1 {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f3f4f6, #2ec98e);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.Stats-container .Backbutton {
+  background: rgba(31, 41, 55, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(46, 201, 142, 0.3);
+  border-radius: 12px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #e8f5f0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.Stats-container .Backbutton:hover {
+  transform: translateY(-1px);
+  background: rgba(46, 201, 142, 0.2);
+  border-color: #2ec98e;
+}
+
+/* Блок статистики (карточка) */
+.stats-block {
+  background: rgba(18, 28, 40, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(46, 201, 142, 0.25);
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: all 0.2s ease;
+}
+
+.stats-block h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #f3f4f6;
+}
+
+/* Ряд с карточками итогов */
+.stats-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stats-card {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  padding: 14px;
+  text-align: center;
+  border: 1px solid rgba(46, 201, 142, 0.2);
+}
+
+.stats-label {
+  display: block;
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.stats-value {
+  display: block;
+  font-size: 32px;
+  font-weight: 800;
+  color: #2ec98e;
+}
+
+/* Заголовок графика */
+.chart-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #d1d5db;
+  margin-bottom: 20px;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+
+/* Область графика */
+.chart-area {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  height: 160px;
+  padding-bottom: 28px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+/* Колонка */
+.chart-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  height: 100%;
+}
+
+/* Столбец */
+.bar {
+  width: 100%;
+  background: linear-gradient(180deg, #2ec98e, #1a8f62);
+  border-radius: 8px 8px 6px 6px;
+  transition: height 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  box-shadow: 0 -2px 8px rgba(46, 201, 142, 0.3);
+  position: relative;
+  cursor: pointer;
+}
+
+/* Значение над столбцом */
+.bar-val {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 700;
+  color: #2ec98e;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+/* Подпись дня */
+.chart-day {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 500;
+  color: #9ca3af;
+}
+
+/* Базовая линия */
+.chart-baseline {
+  position: absolute;
+  bottom: 26px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #2ec98e, transparent);
+}
+
+/* Детализация по дням (список) */
+.daily-breakdown {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.day-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+.day-name {
+  font-weight: 600;
+  color: #2ec98e;
+}
+
+.day-counts {
+  color: #d1d5db;
+}
+
+/* Состояния загрузки / ошибки */
+.stats-loading, .stats-error {
+  text-align: center;
+  padding: 40px;
+  background: rgba(18, 28, 40, 0.75);
+  border-radius: 24px;
+  color: #f3f4f6;
+}
+
+.stats-error {
+  color: #e84040;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  .Stats-container {
+    padding: 12px;
+  }
+  .stats-block {
+    padding: 16px;
+  }
+  .chart-area {
+    height: 130px;
+    gap: 6px;
+  }
+  .bar-val {
+    font-size: 10px;
+    top: -20px;
+  }
+  .chart-day {
+    font-size: 10px;
+    bottom: -20px;
+  }
+  .stats-value {
+    font-size: 26px;
+  }
+  .day-row {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+/* Анимация появления */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stats-block, .stats-card {
+  animation: fadeSlide 0.3s ease-out;
 }
