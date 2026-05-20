@@ -9,13 +9,12 @@ function TaskForm({ onAddTask, onCancel }) {
   });
 
   const handleSubmit = () => {
-
-    if (!task.title.trim()) {
-      alert('Введите название задачи');
-      return;
-    }
-    onAddTask(task); 
-  };
+  if (!task.title.trim()) {
+    window.Telegram?.WebApp?.showAlert?.('Введите название задачи');
+    return;
+  }
+  onAddTask(task);
+};
 
   return (
     <div className="cmpTaskForm">

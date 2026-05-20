@@ -7,16 +7,13 @@ function ScheduleFormCrate({ dayId, onSave }) {
   const [startTime, setStartTime] = useState('09:00');
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!title.trim()) return;
-
-    onSave({
-      day_id: dayId,
-      title,
-      description,
-      start_time: startTime
-    });
-  };
+  e.preventDefault();
+  if (!title.trim()) {
+    window.Telegram?.WebApp?.showAlert?.('Введите название занятия');
+    return;
+  }
+  onSave({ day_id: dayId, title, description, start_time: startTime });
+};
 
   return (
     <div className="ScheduleForm-container">
@@ -26,7 +23,6 @@ function ScheduleFormCrate({ dayId, onSave }) {
           placeholder="Название занятия"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          required
         />
         <input
           type="text"
