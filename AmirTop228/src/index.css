@@ -3,7 +3,7 @@
    Modern glassmorphism + Telegram themes
    --------------------------------------- */
 
-/* ----- CSS Variables (light theme) ----- */
+/* ----- CSS Variables (всегда темная тема) ----- */
 :root {
   --bg-start-light: #f8fafc;
   --bg-end-light: #e2e8f0;
@@ -12,13 +12,7 @@
   --card-bg-light: rgba(255, 255, 255, 0.5);
   --text-primary-light: #0f172a;
   --text-secondary-light: #475569;
-  --accent-primary: #8b5cf6;
-  --accent-secondary: #a78bfa;
-  --accent-glow: rgba(139, 92, 246, 0.3);
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-
+  
   /* Dark theme */
   --bg-start-dark: #09090b;
   --bg-end-dark: #18181b;
@@ -27,15 +21,22 @@
   --card-bg-dark: rgba(39, 39, 42, 0.5);
   --text-primary-dark: #fafafa;
   --text-secondary-dark: #a1a1aa;
+  
+  --accent-primary: #8b5cf6;
+  --accent-secondary: #a78bfa;
+  --accent-glow: rgba(139, 92, 246, 0.3);
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
 
-  /* Default = light */
-  --bg-start: var(--bg-start-light);
-  --bg-end: var(--bg-end-light);
-  --glass-bg: var(--glass-bg-light);
-  --glass-border: var(--glass-border-light);
-  --card-bg: var(--card-bg-light);
-  --text-primary: var(--text-primary-light);
-  --text-secondary: var(--text-secondary-light);
+  /* ПРИНУДИТЕЛЬНО темная тема */
+  --bg-start: var(--bg-start-dark);
+  --bg-end: var(--bg-end-dark);
+  --glass-bg: var(--glass-bg-dark);
+  --glass-border: var(--glass-border-dark);
+  --card-bg: var(--card-bg-dark);
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
 
   --border-radius-sm: 8px;
   --border-radius-md: 12px;
@@ -47,8 +48,8 @@
   --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark theme via media query */
-@media (prefers-color-scheme: dark) {
+/* Dark theme via media query - ОТКЛЮЧЕНО (всегда темная) */
+/* @media (prefers-color-scheme: dark) {
   :root {
     --bg-start: var(--bg-start-dark);
     --bg-end: var(--bg-end-dark);
@@ -58,10 +59,10 @@
     --text-primary: var(--text-primary-dark);
     --text-secondary: var(--text-secondary-dark);
   }
-}
+} */
 
-/* Telegram WebApp integration (overrides) */
-@supports (color: var(--tg-theme-bg-color)) {
+/* Telegram WebApp integration (overrides) - ОТКЛЮЧЕНО */
+/* @supports (color: var(--tg-theme-bg-color)) {
   :root {
     --bg-start: var(--tg-theme-bg-color, var(--bg-start));
     --glass-bg: rgba(var(--tg-theme-bg-color-rgb, 255 255 255), 0.7);
@@ -69,7 +70,7 @@
     --text-secondary: var(--tg-theme-hint-color, var(--text-secondary));
     --accent-primary: var(--tg-theme-button-color, #8b5cf6);
   }
-}
+} */
 
 /* ----- Reset & Base ----- */
 * {

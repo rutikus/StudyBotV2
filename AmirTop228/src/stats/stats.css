@@ -22,7 +22,7 @@
 }
 
 .Stats-container .Backbutton {
-  background: rgba(31, 41, 55, 0.85);
+  background: rgba(46,54,64);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(46, 201, 142, 0.3);
   border-radius: 12px;
@@ -33,6 +33,9 @@
   cursor: pointer;
   transition: all 0.2s ease;
   margin-bottom: 20px;
+  position: relative;
+  left: -10px;
+  height: 67px;
 }
 
 .Stats-container .Backbutton:hover {
@@ -43,7 +46,7 @@
 
 /* Блок статистики (карточка) */
 .stats-block {
-  background: rgba(18, 28, 40, 0.75);
+  background: rgba(46,54,64);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(46, 201, 142, 0.25);
   border-radius: 24px;
