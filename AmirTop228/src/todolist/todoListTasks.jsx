@@ -8,7 +8,7 @@ function TodoListTasks({ tasks, onToggle, onDelete }) {
   return (
     <div className="cmpTasks">
       {tasks.map((task) => (
-        <div key={task.id} className="task" style={{ backgroundColor: task.completed ? 'green' : 'Black' }}>
+        <div key={task.id} className="task" style={{ backgroundColor: task.completed ? 'green' : '#2e3640' }}>
           <h3 style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
             {task.title}
           </h3>
