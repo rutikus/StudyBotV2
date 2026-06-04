@@ -33,6 +33,9 @@ function MenuButtons({ onNavigate }) {
       <button className="button button5" onClick={handleNeuralClick}>
         Нейронка
       </button>
+      <button className="button button4" onClick={() => onNavigate('help')}>
+        help Menu
+      </button>
     </div>
   );
 }

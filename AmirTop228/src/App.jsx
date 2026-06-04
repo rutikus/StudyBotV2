@@ -5,6 +5,7 @@ import ScheduleMenu from './schedule/schedule';
 import TodoList from './todolist/todolist';
 import PomodoroMenu from './pomodoro/pomodoro';
 import StatsMenu from './stats/stats';
+import HelpMenu from './helpMenu/helpMenu';
 import { loginWithTelegram } from './auth';
 
 function App() {
@@ -57,6 +58,8 @@ function App() {
         return <PomodoroMenu onBack={goBack} />;
       case 'stats':
         return <StatsMenu onBack={goBack} tgId={tgId} />;
+      case 'help':
+        return <HelpMenu onBack={goBack}/>;
       default:
         return <MenuButtons onNavigate={navigateTo} />;
     }
